@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <body>
         <NavigationBar></NavigationBar>
         <Providers>{children}</Providers>
-        <Footer className="fixed bottom-0" ></Footer>
+        <Footer></Footer>
       </body>
     </html>
   );

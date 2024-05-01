@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import { AcmeLogo } from "../assets/AcmeLogo";
-import { Logo } from "../assets/images/logo.bmp";
+import { Logo } from "../assets/Logo";
 
 import {
   Navbar,
@@ -76,7 +75,7 @@ export default function NavigationBar() {
       }}
     >
       <NavbarBrand>
-        <AcmeLogo />
+        <Logo />
         <p className="font-bold text-inherit">DeskFit</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">

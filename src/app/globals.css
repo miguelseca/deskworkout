@@ -45,17 +45,14 @@ body {
     sans-serif;
   line-height: 1.6;
   font-size: 18px;
+  background-image: url('../assets/images/back-office.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
 }
 
 * {
   box-sizing: border-box;
 }
-
-/* body {
-  background-image: url('../assets/images/back-office.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}  */
 
