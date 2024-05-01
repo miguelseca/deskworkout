@@ -6,7 +6,12 @@ import NavigationBar from "@/components/navigationBar";
 export const metadata = {
   title: "DeskFit",
   description: "DeskFit Web Application",
+    icons: {
+      icon: '/favicon.ico',
+    },
 };
+
+ 
 
 export default function RootLayout({ children }) {
   return (
