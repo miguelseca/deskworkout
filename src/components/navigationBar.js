@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Logo } from "../assets/Logo";
+import { Logo } from "./Logo";
 
 import {
   Navbar,
@@ -28,6 +28,12 @@ export default function NavigationBar() {
       title: "Exercises",
       link: "/exercises",
     },
+    {
+      title: "Options",
+      link: "/options",
+    },
+
+
   ];
 
   function renderLinks() {
