@@ -1,8 +1,1 @@
-export const QUOTES = [
-   'Sitting too much?',
-   'Sitting too much?',
-   'Sitting too much?',
-   'Sitting too much?',
-   'Sitting too much?',
-   'Sitting too much?',
-]
+export const QUOTES = ["Sitting too much?"];
