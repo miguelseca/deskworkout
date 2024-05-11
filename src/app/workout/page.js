@@ -2,6 +2,9 @@
 import { EXERCISES } from "@/data/exercises";
 import { useEffect, useState } from "react";
 import { SOUNDS } from "@/data/sounds";
+import ExerciseCard from "@/components/ExerciseCard/ExerciseCard";
+import EmptyCard from "@/components/EmptyCard/EmptyCard";
+import WorkoutControls from "@/components/WorkoutControls/WorkoutControls";
 
 export default function Workout() {
   const [timeLeft, setTimeLeft] = useState(0);
@@ -39,7 +42,7 @@ export default function Workout() {
       setShowCard(false);
       setIsWorking(true);
       const workoutInterval = setTimeout(() => {
-        alarm()
+        alarm();
       }, minutes * 60000);
 
       setWorkoutIntervalId(workoutInterval);
@@ -96,24 +99,13 @@ export default function Workout() {
             )}
             {showCard && <p>{exercise.name}</p>}
           </div>
-          <button
-            onClick={startWorkout}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 w-full"
-          >
-            Start Workout
-          </button>
-          <button
-            onClick={cancelWorkout}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 w-full"
-          >
-            Cancel Workout
-          </button>
-          <button
-            onClick={continueWorkout}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 w-full"
-          >
-            Continue Workout
-          </button>
+
+          <WorkoutControls
+          isWorking={isWorking}
+          startWorkout={startWorkout}
+          continueWorkout={continueWorkout}
+          cancelWorkout={cancelWorkout}
+          />
         </div>
       </div>
     </>
