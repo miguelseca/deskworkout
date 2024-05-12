@@ -9,8 +9,9 @@ import {
   Button,
 } from "@nextui-org/react";
 import { SOUNDS } from "@/data/sounds";
-import useLocalStorage from "@/hooks/useLocalStorage";
 import { useEffect, useState } from "react";
+import { CheckboxGroup, Checkbox } from "@nextui-org/react";
+import { Switch } from "@nextui-org/switch";
 
 export default function Options() {
   const [sound, setSound] = useState(0);
@@ -41,7 +42,7 @@ export default function Options() {
   return (
     <>
       <div className="container mx-auto p-6">
-        <div className="bg-blue shadow-md rounded-md p-6 mb-6">
+        <div className="bg-zinc-800/90 shadow-md rounded-md p-6 mb-4">
           <h3 className="text-xl font-semibold mb-4">Workout time interval</h3>
           <Slider
             label=" "
@@ -56,9 +57,11 @@ export default function Options() {
           />
         </div>
 
-        <div className="bg-blue shadow-md rounded-md p-6">
-          <h3 className="text-xl font-semibold mb-4">Alarm sound: {SOUNDS[sound].name} </h3>
-          
+        <div className="bg-zinc-800/90 shadow-md rounded-md p-6 mb-4">
+          <h3 className="text-xl font-semibold mb-4">
+            Alarm sound: {SOUNDS[sound].name}{" "}
+          </h3>
+
           <Dropdown>
             <DropdownTrigger>
               <Button variant="bordered">Select sound</Button>
@@ -73,6 +76,24 @@ export default function Options() {
             </DropdownMenu>
           </Dropdown>
         </div>
+
+        <div className="bg-zinc-800/90 shadow-md rounded-md p-6 mb-4">
+          <CheckboxGroup
+            label="Workout selection"
+            defaultValue={["buenos-aires", "london"]}
+          >
+            <Checkbox value="buenos-aires">Core Workout</Checkbox>
+            <Checkbox value="sydney">Stretch</Checkbox>
+            <Checkbox value="san-francisco">Eye Exercises</Checkbox>
+            <Checkbox value="tokyo">Yoga-like Exercises</Checkbox>
+          </CheckboxGroup>
+        </div>
+
+        <div className="bg-zinc-800/90 shadow-md rounded-md p-6">
+          <Switch defaultSelected>Can repeat exercises?</Switch>
+        </div>
+
+
       </div>
     </>
   );

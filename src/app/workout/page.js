@@ -1,9 +1,12 @@
 "use client";
+
+import Head from "next/head";
+import { Card, CardBody, Image, CardFooter } from "@nextui-org/react";
 import { EXERCISES } from "@/data/exercises";
 import { useEffect, useState } from "react";
 import { SOUNDS } from "@/data/sounds";
+import StartCard from "@/components/StartCard/StartCard";
 import ExerciseCard from "@/components/ExerciseCard/ExerciseCard";
-import EmptyCard from "@/components/EmptyCard/EmptyCard";
 import WorkoutControls from "@/components/WorkoutControls/WorkoutControls";
 
 export default function Workout() {
@@ -36,6 +39,14 @@ export default function Workout() {
     // }
   }, []);
 
+  useEffect(() => {
+    if (isWorking) {
+      document.title = "DeskWorkout in " + timeLeft + "minutes";
+    } else {
+      document.title = " Just DeskWorkout";
+    }
+  }, [timeLeft]);
+
   function startWorkout() {
     if (!isWorking) {
       console.log("STARTING");
@@ -43,7 +54,7 @@ export default function Workout() {
       setIsWorking(true);
       const workoutInterval = setTimeout(() => {
         alarm();
-      }, minutes * 60000);
+      }, minutes * 6000);
 
       setWorkoutIntervalId(workoutInterval);
       setTimer();
@@ -57,11 +68,12 @@ export default function Workout() {
     clearInterval(timerIntervalId);
     setTimerIntervalId(null);
     setIsWorking(false);
+    setShowCard(false);
   }
 
   function continueWorkout() {
-    setShowCard(false);
     cancelWorkout();
+    startWorkout();
   }
 
   function setTimer() {
@@ -70,7 +82,7 @@ export default function Workout() {
     setTimeLeft(minutes * 60);
     const timerInterval = setInterval(() => {
       setTimeLeft((a) => a - 1);
-    }, 1000);
+    }, 100);
     setTimerIntervalId(timerInterval);
   }
 
@@ -81,32 +93,54 @@ export default function Workout() {
       "/sounds/" + SOUNDS[sound].name + SOUNDS[sound].type
     );
     audio.play();
-    cancelWorkout();
+    clearInterval(workoutIntervalId);
+    setWorkoutIntervalId(null);
+    clearInterval(timerIntervalId);
+    setTimerIntervalId(null);
+    setIsWorking(false);
   }
 
   return (
     <>
-      <div className="flex justify-center items-center">
+      <Head>
+        <title>My page title</title>
+      </Head>
+      <div className="flex flex-col items-center justify-between">
         <div>
-          <div className="shadow-md p-8 rounded-lg mt-10 w-80 h-32">
-            {isWorking && (
-              <p>
-                {"time until next exercise:" +
-                  Math.floor(timeLeft / 60) +
-                  " : " +
-                  (timeLeft - Math.floor(timeLeft / 60) * 60)}
-              </p>
-            )}
-            {showCard && <p>{exercise.name}</p>}
-          </div>
+          {!showCard && !isWorking && <StartCard />}
 
-          <WorkoutControls
+          {!showCard && isWorking && (
+            <Card className="py-2 m-4 px-2 bg-zinc-800/90">
+              <CardBody className="overflow-visible">
+                <Image
+                  alt="Card background"
+                  className="object-cover rounded-xl "
+                  src="https://nextui.org/images/hero-card-complete.jpeg"
+                  width={280}
+                />
+              </CardBody>
+
+              <CardFooter>
+                <small className="text-default-500 w-64 inline-block align-text-top text-justify">
+                  {"time until next exercise:" +
+                    Math.floor(timeLeft / 60) +
+                    " : " +
+                    (timeLeft - Math.floor(timeLeft / 60) * 60)}
+                </small>
+              </CardFooter>
+            </Card>
+          )}
+
+          {showCard && <ExerciseCard exercise={exercise} />}
+        </div>
+
+        <WorkoutControls
           isWorking={isWorking}
+          showCard={showCard}
           startWorkout={startWorkout}
           continueWorkout={continueWorkout}
           cancelWorkout={cancelWorkout}
-          />
-        </div>
+        />
       </div>
     </>
   );

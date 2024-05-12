@@ -2,11 +2,8 @@ export const EXERCISES = [
   {
     imageURL: 1,
     name: "Seated Marches",
-    description: { pt: "senta", en: "sit" },
-
-    //   "Sit on the chair with your back straight. Bend your legs at the knees and “run” on the spot with short, quick steps as fast as you can for 15 to 20 seconds.",
-    // descriptionPT:
-    //   "Sit on the chair with your back straight. Bend your legs at the knees and “run” on the spot with short, quick steps as fast as you can for 15 to 20 seconds.",
+    description:
+      "Sit on the chair with your back straight. Bend your legs at the knees and “run” on the spot with short, quick steps as fast as you can for 15 to 20 seconds.",
     collection: "Base",
     repeat: false,
     repeatText: "",
