@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col items-center justify-between">
-        <Card className="py-4 m-10 px-8">
+        <Card className="bg-zinc-800/90 py-4 m-10 px-8">
           {/* <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <p className="text-tiny uppercase font-bold">Daily Mix</p>
             <small className="text-default-500">12 Tracks</small>

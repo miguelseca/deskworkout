@@ -41,7 +41,9 @@ export default function Workout() {
 
   useEffect(() => {
     if (isWorking) {
-      document.title = "DeskWorkout in " + timeLeft + "minutes";
+      document.title = "DeskWorkout in " + Math.floor(timeLeft / 60) +
+      " : " +
+      (timeLeft - Math.floor(timeLeft / 60) * 60) + " minutes";
     } else {
       document.title = " Just DeskWorkout";
     }
@@ -54,7 +56,7 @@ export default function Workout() {
       setIsWorking(true);
       const workoutInterval = setTimeout(() => {
         alarm();
-      }, minutes * 6000);
+      }, minutes * 60000);
 
       setWorkoutIntervalId(workoutInterval);
       setTimer();
@@ -82,7 +84,7 @@ export default function Workout() {
     setTimeLeft(minutes * 60);
     const timerInterval = setInterval(() => {
       setTimeLeft((a) => a - 1);
-    }, 100);
+    }, 1000);
     setTimerIntervalId(timerInterval);
   }
 

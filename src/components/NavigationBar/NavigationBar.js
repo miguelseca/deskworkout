@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import {Logo} from "./Logo";
+import { Logo } from "./Logo";
 
 import {
   Navbar,
@@ -61,6 +61,7 @@ export default function NavigationBar() {
 
   return (
     <Navbar
+      className="bg-zinc-800/90"
       classNames={{
         item: [
           "flex",
@@ -79,7 +80,7 @@ export default function NavigationBar() {
       }}
     >
       <NavbarBrand>
-        <Logo/>
+        <Logo />
         <p className="font-bold text-inherit">DeskWorkout</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
